@@ -10,7 +10,7 @@ import cgi
 import socket
 
 # create database
-conn = sqlite3.connect('test.db')
+con = lite.connect('test.db')
 
 
 @app.route('/')
@@ -23,19 +23,23 @@ def index():
 
 @app.route('/signup', methods = ['POST'])
 def signup():
+
+    if request.form['value'] == 'res':
+        return render_template('index.html')
+    elif request.form['value'] == 'foo':
+        return render_template('signup.html')
+    #else:
+    # invalid action
+
 	#first_name, last_name = request.form['first_name'], request.form['last_name']
 	# name for stuff = request.form['name from form']
 	# sending name/s to db
 
 	return redirect('/') 
 
-@app.route('/signuppageres') #restaurant sign up
-def signup1():
-    return render_template('CREATEPAGE.html', title='Signup/Login')
-
-@app.route('/signuppatefoo') #food pantry sign up
-def signup2():
-    return render_template('CREATEPAGE.html', title='Signup/Login')
+@app.route('/signuppage')
+def signuppage():
+	return render_template('signup.html')
 
 @app.route('/login', methods = ['POST'])
 def login():

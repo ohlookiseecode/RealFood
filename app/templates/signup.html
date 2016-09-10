@@ -4,14 +4,14 @@
     
     <div class="top-row">
       <div class="field-wrap">
-        <input type="text" name="first_name" required autocomplete="off" placeholder="First Name"/>
+        <input type="text" name="group_name" required autocomplete="off" placeholder="Organization"/>
       </div>
   
       <div class="field-wrap">
         <!--<label>
           Last Name<span class="req">*</span>
         </label>-->
-        <input type="text" name="last_name" required autocomplete="off" placeholder="Last Name"/>
+        <input type="text" name="person_name" required autocomplete="off" placeholder="Full Name"/>
       </div>
     </div>
 
@@ -23,6 +23,8 @@
       <input type="password" name ="pword" required autocomplete="off" placeholder="Set A Password"/>
     </div>
     
-    <button type="submit" class="button button-block"/>Get Started</button>
+    <!-- can we have two submit buttons? -->
+    <button type="submit" class="button button-block" name="action" value="res"/>Restaurant</button>
+    <button type="submit" class="button button-block" name="action" value="foo"/>Food Pantry</button>
     
     </form>

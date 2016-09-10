@@ -1,16 +1,16 @@
 <html>
 <!-- make this into some sort of layout template... see Flask from docs for reference -->
-<!-- {% extends "TEMPLATENAME.html" %}
-{% block content %} -->
+
   <head>
     {% if title %}
     <title>{{ title }} - Food4Thought</title>
     {% else %}
     <title>Hello</title>
     {% endif %}
+    <a href="{{ url_for('signuppage') }}">SignUp</a>
   </head>
   <body>
       <h1>Hello, {{ user.nickname }}, I made a change!</h1>
   </body>
-<!-- {% endblock %} -->
+
 </html>
