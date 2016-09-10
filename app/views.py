@@ -21,14 +21,26 @@ def index():
                            title='Home',
                            user=user)
 
+@app.route('/signup', methods = ['POST'])
+def signup():
+	# name for stuff = request.form['name from form']
+	# sending name/s to db
+
+	return redirect('/') 
+
 @app.route('/signuppageres')
 def signup1():
-    return render_template('CREATEPAGE.html', user = current_user, title='Signup/Login')
+    return render_template('CREATEPAGE.html', title='Signup/Login')
 
 @app.route('/signuppatefoo')
 def signup2():
-    return render_template('CREATEPAGE.html', user = current_user, title='Signup/Login')
+    return render_template('CREATEPAGE.html', title='Signup/Login')
+
+@app.route('/login', methods = ['POST'])
+def login():
+	# check if user name and password are true (in db)
+	return redirect('/')
 
 @app.route('/about')
 def about():
-    return render_template('about.html', user = current_user, title='About')
+    return render_template('CREATEPAGE.html', title='About')
