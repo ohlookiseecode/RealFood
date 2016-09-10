@@ -16,26 +16,25 @@ con = lite.connect('test.db')
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'nickname': 'Miguel'}  # fake user
+    user = 'Fred'  # fake user
     return render_template('index.html',
                            title='Home',
                            user=user)
 
 @app.route('/signup', methods = ['POST'])
 def signup():
-
-    if request.form['value'] == 'res':
-        return render_template('index.html')
-    elif request.form['value'] == 'foo':
-        return render_template('signup.html')
-    #else:
-    # invalid action
+    grouptype, groupname = request.form['grouptype'], request.form['group_name']
+    if grouptype == 'res':
+        #add to res table
+        a = 42
+    elif grouptype == 'foo':
+        #add to foo table
+        a = 42
+    return render_template('index.html', user=groupname)
 
 	#first_name, last_name = request.form['first_name'], request.form['last_name']
 	# name for stuff = request.form['name from form']
 	# sending name/s to db
-
-	return redirect('/') 
 
 @app.route('/signuppage')
 def signuppage():

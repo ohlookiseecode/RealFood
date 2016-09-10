@@ -10,7 +10,11 @@
     <a href="{{ url_for('signuppage') }}">SignUp</a>
   </head>
   <body>
-      <h1>Hello, {{ user.nickname }}, I made a change!</h1>
+      {%if user %}
+      <h1>Hello, {{ user }}, I made a change!</h1>
+      {% else %}
+      <h1> Hello Nobody. </h1>
+      {% endif %}
   </body>
 
 </html>
