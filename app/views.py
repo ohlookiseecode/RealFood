@@ -6,8 +6,11 @@ from app import app
 import sqlite3 as lite
 import sys
 import cgi
-import resetDB
+#import resetDB
 import socket
+
+# create database
+conn = sqlite3.connect('test.db')
 
 
 @app.route('/')
