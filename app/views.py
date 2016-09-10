@@ -8,6 +8,7 @@ import sys
 import cgi
 #import resetDB
 import socket
+import dbops #db operations
 
 # create database
 con = lite.connect('test.db')
