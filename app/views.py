@@ -23,16 +23,17 @@ def index():
 
 @app.route('/signup', methods = ['POST'])
 def signup():
+	#first_name, last_name = request.form['first_name'], request.form['last_name']
 	# name for stuff = request.form['name from form']
 	# sending name/s to db
 
 	return redirect('/') 
 
-@app.route('/signuppageres')
+@app.route('/signuppageres') #restaurant sign up
 def signup1():
     return render_template('CREATEPAGE.html', title='Signup/Login')
 
-@app.route('/signuppatefoo')
+@app.route('/signuppatefoo') #food pantry sign up
 def signup2():
     return render_template('CREATEPAGE.html', title='Signup/Login')
 
