@@ -13,7 +13,6 @@ import dbops #db operations
 # create database
 con = lite.connect('test.db')
 
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -24,14 +23,15 @@ def index():
 
 @app.route('/signup', methods = ['POST'])
 def signup():
-    grouptype, groupname = request.form['grouptype'], request.form['group_name']
+    grouptype, Organization, PersonName, Email, Pword = request.form['grouptype'], request.form['group_name'], request.form['person_name'], request.form['email'], request.form['pword']
     if grouptype == 'res':
-        #add to res table
-        a = 42
+        dbops.createUser("Restaurants", Organization, PersonName, Email, Pword)
+
     elif grouptype == 'foo':
         #add to foo table
-        a = 42
-    return render_template('index.html', user=groupname)
+        dbops.createUser("FoodPantries", Organization, PersonName, Email, Pword)
+
+    return render_template('index.html', user=Organization)
 
 	#first_name, last_name = request.form['first_name'], request.form['last_name']
 	# name for stuff = request.form['name from form']
