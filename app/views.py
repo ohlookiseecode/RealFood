@@ -46,6 +46,10 @@ def login():
 	# check if user name and password are true (in db)
 	return redirect('/')
 
-@app.route('/about')
-def about():
-    return render_template('CREATEPAGE.html', title='About')
+@app.route('/aboutpage')
+def aboutpage():
+    return render_template('about.html', title='About')
+
+@app.route('/order')
+def order():
+    return redirect('/')

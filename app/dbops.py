@@ -5,7 +5,7 @@ import sys
 db = 'test.db'
 
 def createInitialTables(): # run once to create Tables with test
-    # Restaurants, FoodPantries
+    # Restaurants, FoodPantries, Orders
     global db
     con = lite.connect(db)
     with con:
@@ -20,6 +20,10 @@ def createInitialTables(): # run once to create Tables with test
         cur.execute("DROP TABLE IF EXISTS FoodPantries")
         cur.execute("CREATE TABLE FoodPantries(Id INTEGER PRIMARY KEY ASC, Organization TEXT, PersonName TEXT, Email TEXT, Pword TEXT)")
         cur.execute("INSERT INTO FoodPantries (Organization, PersonName, Email, Pword) VALUES ('The Fredrrrick', 'Hungry Bill', 'hungrybill@bill.com', '12354')")
+
+    # Create Orders 
+        cur.execute("DROP TABLE IF EXISTS Orders")
+        cur.execute("CREATE TABLE Orders(OrderId INTEGER PRIMARY KEY ASC, Id INT, Organization TEXT, OrderDate DATE, OrderType INT DEFAULT 0, OrderSize INT DEFAULT 0)")
 
     # Printing Check
        # treats row as a dictionary (column is key)
@@ -39,4 +43,30 @@ def createUser(Table, Organization, PersonName, Email, Pword):
         stmt = "INSERT INTO " + Table + " (Organization, PersonName, Email, Pword) VALUES (?, ?, ?, ?)"
         cur.executemany(stmt, user)
 
-# createInitialTables()
+def createCurUser(Email, Pword):
+    #do some shit
+
+def verifyUser(cur, Table, Email, Pword):
+    global db
+    con = lite.connect(db)
+    with con:
+        cur = con.cursor()
+        stmt = "SELECT COUNT(*) FROM " + Table + "  WHERE Email = '" + email + "' AND Pword = '" + pword + "'"
+        cur.execute(stmt)
+        if cur.fetchone()[0] == 0:
+            return False
+        return True
+
+def addOrder():
+    global db
+    con = lite.connect(db)
+    with con:
+        con.row_factory = lite.Row
+        cur = con.cursor()
+        cur.execute("SELECT * FROM #currentRes")
+        rows = cur.fetchall()
+        for row in rows:
+            stmt = "INSERT INTO Orders (Id, Organization, OrderDate) VALUES (" + row["Id"] + ", '" + row["Organization"] + "', date('now'))"
+            cur.execute(stmt)
+
+createInitialTables()
