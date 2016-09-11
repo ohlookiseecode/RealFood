@@ -43,15 +43,42 @@ def createUser(Table, Organization, PersonName, Email, Pword):
         stmt = "INSERT INTO " + Table + " (Organization, PersonName, Email, Pword) VALUES (?, ?, ?, ?)"
         cur.executemany(stmt, user)
 
-def createCurUser(Email, Pword):
-    #do some shit
-
-def verifyUser(cur, Table, Email, Pword):
+def createCurUser(Table, Email, Pword):
+    # make usertable specific?
     global db
     con = lite.connect(db)
     with con:
         cur = con.cursor()
-        stmt = "SELECT COUNT(*) FROM " + Table + "  WHERE Email = '" + email + "' AND Pword = '" + pword + "'"
+        cur.execute("DROP TABLE IF EXISTS CurrentUser")
+        cur.execute("CREATE TABLE CurrentUser (Id INT, Organization TEXT)")
+
+        con.row_factory = lite.Row
+        cur = con.cursor()
+        stmt = "SELECT * FROM " + Table + " WHERE Email = '" + Email + "' AND Pword = '" + Pword + "'"
+        cur.execute(stmt)
+
+        Id, Organization = 0, 'None'
+        rows = cur.fetchall()
+        for row in rows:
+            Id, Organization = row["Id"], row["Organization"]
+
+        stmt = "INSERT INTO CurrentUser (Id, Organization) VALUES (?, ?)"
+        user = [(Id, Organization)]
+        cur.executemany(stmt, user)
+
+def clearCurUser():
+    global db
+    con = lite.connect(db)
+    with con:
+        cur = con.cursor()
+        cur.execute("DELETE FROM CurrentUser")
+
+def verifyUser(Table, Email, Pword):
+    global db
+    con = lite.connect(db)
+    with con:
+        cur = con.cursor()
+        stmt = "SELECT COUNT(*) FROM " + Table + "  WHERE Email = '" + Email + "' AND Pword = '" + Pword + "'"
         cur.execute(stmt)
         if cur.fetchone()[0] == 0:
             return False
@@ -63,10 +90,7 @@ def addOrder():
     with con:
         con.row_factory = lite.Row
         cur = con.cursor()
-        cur.execute("SELECT * FROM #currentRes")
-        rows = cur.fetchall()
-        for row in rows:
-            stmt = "INSERT INTO Orders (Id, Organization, OrderDate) VALUES (" + row["Id"] + ", '" + row["Organization"] + "', date('now'))"
-            cur.execute(stmt)
+        stmt = "INSERT INTO Orders (Id, Organization, OrderDate) SELECT Id, Organization, date('now') FROM CurrentUser"
+        cur.execute(stmt)
 
-createInitialTables()
+#createInitialTables()

@@ -1,3 +1,19 @@
 <body>
-	<h1> Login </h1>
+	<h1>Login</h1>
+    
+    <form action="/login" method="post">
+
+    <div class="field-wrap">
+      <input type="email" name="email" required autocomplete="off" placeholder="Email Address"/>
+    </div>
+    
+    <div class="field-wrap">
+      <input type="password" name ="pword" required autocomplete="off" placeholder="Set A Password"/>
+    </div>
+    
+    <!-- can we have two submit buttons? -->
+    <button type="submit" class="button button-block" name="grouptype" value="res"/>Restaurant</button>
+    <button type="submit" class="button button-block" name="grouptype" value="foo"/>Food Pantry</button>
+    
+    </form>
 </body>

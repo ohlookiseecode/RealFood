@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+      {%if user %}
+      <h1>Hello, {{ user }}, I made a change!</h1>
+      {% else %}
+      <h1> Hello Nobody. </h1>
+      {% endif %}
+
+      <br>
+      <h2> Current User </h2>
+      <table class = "data">
+        <tr>
+          {% for col in ccolumns %}
+            <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+        {% for post in cposts %}
+        <tr>
+          {% for i in post %}
+            <td>{{ i }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+      <h2> Restaurants </h2>
+      <table class = "data">
+      <tr>
+        {% for col in rcolumns %}
+          <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+      {% for post in rposts %}
+      <tr>
+        {% for i in post %}
+          <td>{{ i }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <h2> Food Pantries </h2>
+    <table class = "data">
+      <tr>
+        {% for col in fcolumns %}
+          <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+      {% for post in fposts %}
+      <tr>
+        {% for i in post %}
+          <td>{{ i }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <h2> Orders </h2>
+    <table class = "data">
+      <tr>
+        {% for col in ocolumns %}
+          <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+      {% for post in oposts %}
+      <tr>
+        {% for i in post %}
+          <td>{{ i }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+
+{% endblock %}

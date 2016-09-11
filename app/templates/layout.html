@@ -1,1 +1,24 @@
 <!-- this is the layout page -->
+<html>
+<head>
+{% if title %}
+<title>{{ title }} - Food4Thought</title>
+{% else %}
+<title>Food For Thought</title>
+{% endif %}
+<a href="{{ url_for('signuppage') }}">Sign Up</a>
+<a href="{{ url_for('loginpage') }}">Login</a>
+<a href="{{ url_for('aboutpage') }}">About</a>
+<a href="{{ url_for('database') }}">Database</a>
+
+<!-- this need to be hidden for nonlogged in users -->
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('orderpage') }}">Give Food</a>
+</head>
+<body>
+
+{% block content%}
+{% endblock %}
+
+</body>
+</html>
