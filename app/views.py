@@ -140,7 +140,7 @@ def order():
 
     if loggedIn:
         dbops.addOrder()
-        return render_template('index.html', ordered = True, userState = loggedIn)
+        return render_template('index.html', ordered = True, userState = loggedIn, connectLyft = True)
     else:
         return redirect('/index')
 
