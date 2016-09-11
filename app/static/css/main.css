@@ -17,9 +17,8 @@ body {
     padding: 10px;
     text-align: center;
 
-
-    top: 50%;
-    transform: translateY(-30px);
+    top: 30%;
+    transform: translateY(-100px);
 
     position:fixed;
     left: 50%;
@@ -29,7 +28,7 @@ body {
 .logging {
     position:absolute;
     right:5;
-    top:15;
+    top:20;
     z-index: 1;
 
     text-align: center;
@@ -64,4 +63,33 @@ body {
 .button-link:active {
     background:rgba(255,255,255,0.3);
     border: solid 1px #fff;
+}
+
+/* TABLE */
+
+table.data {
+    border-collapse: collapse;
+    width: 80%;
+    min-width: 300px;
+    margin: auto;
+}
+
+.data th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+.data tr {
+  background: rgba(19, 35, 47, 0.9);
+  color: #fff;
+}
+
+.data tr:nth-child(even) {
+  background: #424e58;
+  color: #a0b3b0;
+}
+
+.data th {
+  background: #1ab188;
+  color: #ffffff;
 }

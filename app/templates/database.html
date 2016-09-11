@@ -1,13 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-      {%if user %}
-      <h1>Hello, {{ user }}, I made a change!</h1>
-      {% else %}
-      <h1> Hello Nobody. </h1>
-      {% endif %}
-
-      <br>
+  <div class="title">
       <h2> Current User </h2>
       <table class = "data">
         <tr>
@@ -70,5 +64,5 @@
       </tr>
       {% endfor %}
     </table>
-
+  </div>
 {% endblock %}
