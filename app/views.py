@@ -6,11 +6,14 @@ from app import app
 import sqlite3 as lite
 import sys
 import cgi
-#import resetDB
 import socket
 import dbops #db operations
 import random
 from funfacts import *
+
+# encoding=utf8  
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 # create database
 con = lite.connect('test.db')

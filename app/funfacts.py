@@ -1,4 +1,10 @@
 # some fun facts about giving food
 # -*- coding: utf-8 -*-
 
+# encoding=utf8  
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 facts = ["The term “food insecurity” means that a person doesn't know where or when they’ll find their next meal. In 2013, 49.1 million Americans lived in food insecure households, 33.3 million adults and 15.8 million children. ", "In 2013, 62% of food-insecure households participated in at least 1 out of the 3 major Federal food assistance programs.", "100% of food banks responding to a Feeding America survey reported an increase in demand for emergency food assistance in 2008. Demand for emergency food assistance increased at a rate ranging from 28.6% to 37.7%. Run a food drive outside your supermarket to keep your local food bank supplied.", "In 2013, households that had higher rates of food insecurity than the national average included households with children (20%), especially households with children headed by single women (34%) or single men (23%). ", "Across the Feeding America network of over 63,000 agencies, 66% of pantries, 41% of kitchen programs, and 11% of shelter programs have no paid staff, relying entirely on volunteers.", "Hunger in America exists for over 50 million people. That is 1 in 6 of the U.S. population – including more than 1 in 5 children. ", "According to Map the Meal Gap, in 2012, the top 5 states with the highest rate of food insecure children under 18 are New Mexico, the District of Columbia, Arizona, Oregon, and Georgia.", "Food bank network members of Feeding America supply food to more than 37 million Americans each year, including 14 million children and 3 million seniors.", "34% of all households served by Feeding America have had to choose between paying for food and paying for medicine or medical care.", "72% of food banks do not feel as though they are able to adequately meet the needs of their communities without adjusting the amount of food distributed.", "There are roughly 15,083 food pantries in America as of 2015."]
