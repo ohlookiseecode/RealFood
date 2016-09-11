@@ -15,7 +15,16 @@
 		{%if userState %}
 
 		<a href="{{ url_for('logout') }}" class="button-link">Logout</a>
-		<a href="{{ url_for('order') }}" class="button-link">Give Food</a>
+
+			{% if table == 'Restaurants' %}
+
+			<a href="{{ url_for('order') }}" class="button-link">Give Food</a>
+
+			{% elif table == 'FoodPantries' %}
+
+			<a href="{{ url_for('receive') }}" class="button-link">Receive Food</a>
+
+			{% endif %}
 
 		{% else %}
 

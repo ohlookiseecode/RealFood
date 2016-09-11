@@ -20,12 +20,14 @@ con = lite.connect('test.db')
 
 # toggles - ordering, logging in/out
 loggedIn = False
+table = 'Nothing'
 
 @app.route('/')
 @app.route('/index')
 def index():
+    global table
     quote = random.choice(facts)
-    return render_template('index.html', quote = quote, userState = loggedIn)
+    return render_template('index.html', quote = quote, userState = loggedIn, table = table)
 
 @app.route('/database')
 def database():
@@ -77,7 +79,7 @@ def database():
                 entire_row += (row[name], )
             cuser_list.append(entire_row)
     
-    return render_template('database.html', userState = loggedIn, title = "no", user = "no", rcolumns = runames, rposts=ruser_list, fposts=fuser_list, fcolumns = funames, oposts = ouser_list, ocolumns = ounames, cposts = cuser_list, ccolumns = cunames)
+    return render_template('database.html', userState = loggedIn, table = table, title = "no", user = "no", rcolumns = runames, rposts=ruser_list, fposts=fuser_list, fcolumns = funames, oposts = ouser_list, ocolumns = ounames, cposts = cuser_list, ccolumns = cunames)
 
 @app.route('/signup', methods = ['POST'])
 def signup():
@@ -101,7 +103,7 @@ def signuppage():
 
 @app.route('/login', methods = ['POST'])
 def login():
-    global loggedIn
+    global loggedIn, table
 
     grouptype, email, pword = request.form['grouptype'], request.form['email'], request.form['pword']
 
@@ -132,7 +134,7 @@ def logout():
 
 @app.route('/aboutpage')
 def aboutpage():
-    return render_template('about.html', title='About', userState = loggedIn)
+    return render_template('about.html', title='About', userState = loggedIn, table = table)
 
 @app.route('/order')
 def order():
@@ -140,10 +142,27 @@ def order():
 
     if loggedIn:
         dbops.addOrder()
-        return render_template('index.html', ordered = True, userState = loggedIn, connectLyft = True)
+        return render_template('index.html', ordered = True, userState = loggedIn, table = table, connectLyft = True)
     else:
         return redirect('/index')
+
+@app.route('/receive')
+def receive():
+    global loggedIn
+
+    if loggedIn:
+        return ('/index') #receive stuff??!?!
 
 @app.route('/orderpage')
 def orderpage():
     return render_template('givefood.html')
+
+@app.route('/receivepage')
+def receivepage():
+    return render_template('receivefood.html')
+
+@app.route('/connectToLyft')
+def connectToLyft():
+    return render_template('connectToLyft.html')
+
+
