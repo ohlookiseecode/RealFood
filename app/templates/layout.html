@@ -1,14 +1,13 @@
 <!-- this is the layout page -->
 <html>
 <head>
+<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css/') }}"> 
 
 <title>Food For Thought</title>
-	
-	<a href="{{ url_for('index') }}">Home</a>
-	<a href="{{ url_for('aboutpage') }}">About</a>
-	<a href="{{ url_for('database') }}">Database</a>
 
 	<div class="logging">
 		<!-- hide links based on user status -->
@@ -36,6 +35,22 @@
 </head>
 <body>
 <body style="background:url({{'static/img/food.jpg'}}) no-repeat center center fixed;">
+
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Food For Thought</span>
+    <nav class="mdl-navigation">
+    	<a href="{{ url_for('index') }}" class="mdl-navigation__link">Home</a>
+		<a href="{{ url_for('aboutpage') }}" class="mdl-navigation__link">About</a>
+		<a href="{{ url_for('database') }}" class="mdl-navigation__link">Database</a>
+      <a class="mdl-navigation__link" href="#">Hello</a>
+      <a class="mdl-navigation__link" href="#">Welcome</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+  </main>
+</div>
 
 {% block content%}
 {% endblock %}

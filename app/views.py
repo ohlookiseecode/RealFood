@@ -11,6 +11,7 @@ import dbops #db operations
 import random
 from funfacts import *
 
+
 # encoding=utf8  
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -142,7 +143,8 @@ def order():
 
     if loggedIn:
         dbops.addOrder()
-        return render_template('index.html', ordered = True, userState = loggedIn, table = table, connectLyft = True)
+
+        return render_template('index.html', ordered = True, userState = loggedIn, table = table)
     else:
         return redirect('/index')
 
@@ -151,7 +153,7 @@ def receive():
     global loggedIn
 
     if loggedIn:
-        return ('/index') #receive stuff??!?!
+        return render_template('index.html', userState = loggedIn, table = table, connectLyft = True)
 
 @app.route('/orderpage')
 def orderpage():
@@ -161,8 +163,72 @@ def orderpage():
 def receivepage():
     return render_template('receivefood.html')
 
-@app.route('/connectToLyft')
-def connectToLyft():
+# Lyft 
+
+token = 'gAAAAABX1H1ioNNoziiNADp4Sy4_UHMt-AhLoaAKUg4K29JWHkYZC_2Z5YuDApZErtqLqyBH6csNNaXIdff6c6KN_gXrSKqzjqC7kgcDu3XGgWEFnqmppcp_5RCTNmeDaEK5xD0XgLcopD-7xDKS5Tg_ejIwajSyu6BMQs9DloyvpJKgFR3IQb8='
+
+def unwrap(data):
+    s = []
+    i = 0
+    j = 0
+    while i < len(data):
+        if data[i]=="[":
+            j = i+2
+            break
+        i += 1
+    s1 = ""
+    while j < len(data):
+        if data[j]=="}":
+            s.append(s1)
+            j += 4
+            break
+        else: s1 = s1+data[j]
+        j += 1
+    s2 = ""
+    while j < len(data):
+        if data[j] == "}":
+            s.append(s2)
+            j += 4
+            break
+        else:
+            s2 = s2 + data[j]
+        j += 1
+    s3 = ""
+    while j < len(data):
+        if data[j] == "}":
+            s.append(s3)
+            j += 4
+            break
+        else:
+            s3 = s3 + data[j]
+        j += 1
+    return s
+
+def get_nearby_driver_cost(start_lat,start_lng,end_lat,end_lng):
+    global token
+
+    url = 'https://api.lyft.com/v1/cost'
+    header = {'Authorization': 'Bearer %s' % token}
+    params = {'start_lat':start_lat,'start_lng':start_lng,'end_lat':end_lat,'end_lng':end_lng}
+    response = request.get(url,headers=header,params=params) #requests
+    response = response.text
+    import unicodedata
+    response = unicodedata.normalize('NFKD', response).encode('ascii','ignore')
+    response = response[1:-1]
+    return unwrap(response)
+
+@app.route('/connectlyftpage')
+def connectlyftpage():
     return render_template('connectToLyft.html')
+
+@app.route('/connectToLyft', methods=['POST'])
+def connectToLyft():
+    start_lat, start_lng, end_lat, end_lng = request.form['curaddresslat'], request.form['curaddresslon'], request.form['destinationlat'], request.form['destinationlon']
+
+    text = get_nearby_driver_cost(start_lat,start_lng,end_lat,end_lng)
+
+    return render_template('moreLyft.html', text = text)
+
+
 
 

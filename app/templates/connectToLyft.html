@@ -1,0 +1,21 @@
+<body>
+	<h1>Connect To Lyft</h1>
+    <p> Try <a href="http://www.latlong.net/convert-address-to-lat-long.html"> this </a> to convert your address. </p>
+
+    <form action="/connectToLyft" method="post">
+
+    <div class="field-wrap">
+      <input type="address" name="curaddresslat" required autocomplete="off" placeholder="Enter latitude (as a number)"/>
+      <input type="address" name="curaddresslon" required autocomplete="off" placeholder="Enter latitude (as a number)"/>
+    </div>
+    
+    <div class="field-wrap">
+      <input type="address" name ="destinationlat" required autocomplete="off" placeholder="Enter latitude (as a number)"/>
+      <input type="address" name ="destinationlon" required autocomplete="off" placeholder="Enter longitude (as a number)"/>
+    </div>
+    
+    <!-- can we have two submit buttons? -->
+    <button type="submit" class="button button-block" name="Find Nearby Lyft Drivers" value="res"/>Find Nearby Lyft Drivers</button>
+    
+    </form>
+</body>
