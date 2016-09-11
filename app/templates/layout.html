@@ -1,21 +1,30 @@
 <!-- this is the layout page -->
 <html>
 <head>
-{% if title %}
-<title>{{ title }} - Food4Thought</title>
-{% else %}
-<title>Food For Thought</title>
-{% endif %}
-<a href="{{ url_for('signuppage') }}">Sign Up</a>
-<a href="{{ url_for('loginpage') }}">Login</a>
-<a href="{{ url_for('aboutpage') }}">About</a>
-<a href="{{ url_for('database') }}">Database</a>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css/') }}"> 
 
-<!-- this need to be hidden for nonlogged in users -->
-<a href="{{ url_for('logout') }}">Logout</a>
-<a href="{{ url_for('orderpage') }}">Give Food</a>
+<title>Food For Thought</title>
+
+	<a href="{{ url_for('aboutpage') }}">About</a>
+	<a href="{{ url_for('database') }}">Database</a>
+
+	<div class="logging">
+		<!-- hide links based on user status -->
+		{%if userState %}
+
+		<a href="{{ url_for('signuppage') }}" class="button-link">Sign Up</a>
+		<a href="{{ url_for('loginpage') }}" class="button-link">Login</a>
+
+		{% else %}
+
+		<a href="{{ url_for('logout') }}" class="button-link">Logout</a>
+		<a href="{{ url_for('orderpage') }}" class="button-link">Give Food</a>
+		{% endif %}
+	</div>
 </head>
 <body>
+<body style="background:url({{'img/food.jpg'}}) no-repeat center center fixed;">
 
 {% block content%}
 {% endblock %}

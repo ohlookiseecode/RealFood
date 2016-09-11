@@ -1,19 +1,21 @@
 
 {% extends "layout.html" %}
 {% block content %}
-
-      {%if user %}
-      <h1>Hello, {{ user }}, I made a change!</h1>
+<!-- -*- coding: utf-8 -*- -->
+<!-- encoding=utf8  -->
+  <div class="title">
+      {%if userState %}
+      <h1>Welcome</h1>
       {% else %}
-      <h1> Hello Nobody. </h1>
+      <h1>Join Today </h1>
       {% endif %}
 
       {%if ordered %}
-      <h1>Thank you for placing an order!</h1>
+      <h3>Thank you for donating food!</h3>
       {% endif %}
 
       {%if quote %}
-      <h1>Thank you for placing an order!</h1>
+      <h1>{{ quote }}</h1>
       {% endif %}
-
+  </div>
 {% endblock %}

@@ -10,7 +10,7 @@ import cgi
 import socket
 import dbops #db operations
 import random
-from funfacts import facts
+from funfacts import *
 
 # create database
 con = lite.connect('test.db')
@@ -22,7 +22,7 @@ loggedIn = False
 @app.route('/index')
 def index():
     quote = random.choice(facts)
-    return render_template('index.html', quote = quote)
+    return render_template('index.html', quote = quote, userState = loggedIn)
 
 @app.route('/database')
 def database():
