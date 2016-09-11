@@ -1,6 +1,14 @@
 <body>
 	<h1>Connect To Lyft</h1>
-    <p> Try <a href="http://www.latlong.net/convert-address-to-lat-long.html"> this </a> to convert your address. </p>
+
+    <style>
+    html, body, #map-canvas{height
+        :100%; margin=0; padding:0
+        ;}
+    </style>
+    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=food%20and%20pantries%20near%20me&key=AIzaSyCcss4ZKUWiTbYK13MLktMN8oKK-o8D42w" allowfullscreen></iframe>
+    <br>
+    <p> Try <a href="http://www.latlong.net/convert-address-to-lat-long.html"> this </a> to convert your address as an alternative to Google. </p>
 
     <form action="/connectToLyft" method="post">
 

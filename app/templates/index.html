@@ -15,11 +15,13 @@
       {% endif %}
 
       {%if quote %}
-      <p>{{ quote }}</p>
+      <h3>{{ quote }}</h3>
       {% endif %}
 
       {%if connectLyft %}
-      <a href="{{ url_for('connectlyftpage') }}" class="button-link">Connect To Lyft</a>
+
+      <a href="{{ url_for('connectlyftpage') }}" class="fixme">Connect To Lyft</a>
+      <!-- <a href="{{ url_for('connectlyftpage') }}" class="button-link">Connect To Lyft</a> -->
       <!-- insert button -->
       {% endif %}
 

@@ -24,6 +24,8 @@ body {
     position:fixed;
     left: 50%;
     margin-left: -30%;
+
+    z-index: 999999;
 }
 
 .dbBackground {
@@ -77,6 +79,11 @@ body {
 .button-link:active {
     background:rgba(255,255,255,0.3);
     border: solid 1px #fff;
+}
+
+.fixme {
+    position: relative;
+    z-index: 99999;
 }
 
 /* TABLE */
