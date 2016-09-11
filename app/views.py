@@ -77,7 +77,7 @@ def database():
                 entire_row += (row[name], )
             cuser_list.append(entire_row)
     
-    return render_template('database.html', title = "no", user = "no", rcolumns = runames, rposts=ruser_list, fposts=fuser_list, fcolumns = funames, oposts = ouser_list, ocolumns = ounames, cposts = cuser_list, ccolumns = cunames)
+    return render_template('database.html', userState = loggedIn, title = "no", user = "no", rcolumns = runames, rposts=ruser_list, fposts=fuser_list, fcolumns = funames, oposts = ouser_list, ocolumns = ounames, cposts = cuser_list, ccolumns = cunames)
 
 @app.route('/signup', methods = ['POST'])
 def signup():
@@ -132,7 +132,7 @@ def logout():
 
 @app.route('/aboutpage')
 def aboutpage():
-    return render_template('about.html', title='About')
+    return render_template('about.html', title='About', userState = loggedIn)
 
 @app.route('/order')
 def order():
@@ -140,7 +140,7 @@ def order():
 
     if loggedIn:
         dbops.addOrder()
-        return render_template('index.html', ordered = True)
+        return render_template('index.html', ordered = True, userState = loggedIn)
     else:
         return redirect('/index')
 
