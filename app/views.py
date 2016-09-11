@@ -134,13 +134,13 @@ def logout():
 def aboutpage():
     return render_template('about.html', title='About')
 
-@app.route('/order', methods = ['POST'])
+@app.route('/order')
 def order():
     global loggedIn
 
     if loggedIn:
         dbops.addOrder()
-        return render_template('index.html', ordered = True) #some notice saying thanks!
+        return render_template('index.html', ordered = True)
     else:
         return redirect('/index')
 

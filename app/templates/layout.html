@@ -13,13 +13,14 @@
 		<!-- hide links based on user status -->
 		{%if userState %}
 
-		<a href="{{ url_for('signuppage') }}" class="button-link">Sign Up</a>
-		<a href="{{ url_for('loginpage') }}" class="button-link">Login</a>
+		<a href="{{ url_for('logout') }}" class="button-link">Logout</a>
+		<a href="{{ url_for('order') }}" class="button-link">Give Food</a>
 
 		{% else %}
 
-		<a href="{{ url_for('logout') }}" class="button-link">Logout</a>
-		<a href="{{ url_for('orderpage') }}" class="button-link">Give Food</a>
+		<a href="{{ url_for('signuppage') }}" class="button-link">Sign Up</a>
+		<a href="{{ url_for('loginpage') }}" class="button-link">Login</a>
+
 		{% endif %}
 	</div>
 </head>
